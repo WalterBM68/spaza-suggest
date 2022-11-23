@@ -87,7 +87,7 @@ module.exports = Routes = (spazaSuggestionDB) =>{
     }
     //Register shop owner(POST)
     const registerSpzaOwner = async (req, res) => {
-        let areaID = req.body.product_suggestion
+        const areaID = req.session.shopOwnerLoginCode.area_id;
         let {shop_owner_name} = req.body;
         if(shop_owner_name){
             shop_owner_name = shop_owner_name.toLowerCase(); 
@@ -127,13 +127,24 @@ module.exports = Routes = (spazaSuggestionDB) =>{
     }
     //area suggestion page (Get route)
     const getAreaSuggestionsScreen = async (req, res) => {
-        // const spazaSugestions = await spazaSuggestionDB.suggestionsForArea();
+        if(!req.session.shopOwnerLoginCode){
+            res.redirect('/loginShopOwner');
+            return;
+        }
+        const areaID = req.session.shopOwnerLoginCode.area_id;
+        const spazaSugestions = await spazaSuggestionDB.suggestionsForArea(areaID);
         res.render('suggestionsForArea', {
-            // spazaSugestions
+            spazaSugestions
         });
     }
     //area suggestion page(POST route)
     const areaSuggestionsScreen = async (req, res) => {
+        const suggestionID = req.session.shopOwnerLoginCode.suggestion_id;
+        console.log('suggID ' + suggestionID);
+        const spazaID = req.session.shopOwnerLoginCode.spaza_id;
+        console.log('spaza ' + spazaID);
+        await spazaSuggestionDB.acceptSuggestion(suggestionID, spazaID); 
+        req.flash('success', "Thank for your suggestions, they are accepted");
         res.redirect('/suggestionsForArea');
     }
     return{

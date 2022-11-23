@@ -157,8 +157,6 @@ module.exports = function SpazaSuggest (db){
                 on suggestion.id = accepted_suggestion.suggestion_id 
                 where accepted_suggestion.spaza_id = $1`, [spazaId])
             
-            // console.log(suggesstions);
-    
             return suggesstions;  
         } catch (error) {
             console.log(error)

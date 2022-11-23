@@ -15,15 +15,6 @@
                 <p for="username" class="details">Shop owner name: </p>
                 <input type="text" class="name" placeholder="Enter Firstname" name="shop_owner_name" autocomplete="off">
             </div>
-            <div class="products-owner">
-                <label for="product_suggestion" class="suggestion">Choose the area of your shop:</label>
-                <select name="product_suggestion" class="product_suggestion">
-                    <option value="" style="font-size: 16px;">Select the area</option>
-                    {{#each areas}}
-                    <option value="{{id}}"> {{area_name}} </option>
-                    {{/each}}
-                </select>
-            </div>
             <button class="register" type="submit"> Register </button>
         </form>
     </div>
