@@ -23,6 +23,16 @@
                 <p for="Product_name" class="details">Product name: </p>
                 <input type="text" class="name" placeholder="Enter Product name" name="product_name" autocomplete="off">
             </div>
+            <table>
+                <tr>
+                    <th>User</th>
+                </tr>
+                {{#each suggestions}}
+                <tr>
+                    <td>{{username}} </td>
+                </tr>
+                {{/each}}
+            </table>
             <button class="submitBtn" type="submit"> Submit </button>
         </form>
     </div>

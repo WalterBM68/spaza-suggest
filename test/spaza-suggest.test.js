@@ -181,6 +181,5 @@ describe ("The smart spaza", function() {
 
     after(function () {
         db.$pool.end()
-    });
-   
+    });   
 });
