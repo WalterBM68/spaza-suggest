@@ -1,21 +1,19 @@
-import assert from 'assert';
-
-import SpazaSuggest from '../spaza-suggest.js';
-import pgPromise from 'pg-promise';
+const assert = require('assert');
+const  SpazaSuggest = require('../spaza-suggest');
+const pgPromise = require('pg-promise');
+const pgp = pgPromise();
 
 // const DATABASE_URL= process.env.DATABASE_URL || "postgresql://codex-coder:pg123@localhost:5432/spaza_suggest";
-const DATABASE_URL= process.env.DATABASE_URL || "postgresql://zuggs:suggest123@localhost:5432/spaza_suggest";
-
+const DATABASE_URL= process.env.DATABASE_URL || "postgresql://postgres:pg123@localhost:5432/spaza_suggest_test";
 const config = { 
 	connectionString : DATABASE_URL
 }
-const pgp = pgPromise();
 
-// if (process.env.NODE_ENV == 'production') {
-// 	config.ssl = { 
-// 		rejectUnauthorized : false
-// 	}
-// }
+if (process.env.NODE_ENV == 'production') {
+	config.ssl = { 
+		rejectUnauthorized : false
+	}
+}
 
 const db = pgp(config);
 const spazaSuggest = SpazaSuggest(db);
@@ -102,8 +100,8 @@ describe ("The smart spaza", function() {
         const suggestions = await spazaSuggest.suggestions(client.id);
 
         assert.equal(3, suggestions.length);
+        assert.equal('Nyanga', suggestions[0].area_name);
         assert.equal('Nyanga East', suggestions[1].area_name);
-
     });
 
     it("should be able to create a new Spaza shop", async function(){

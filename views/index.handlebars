@@ -1,0 +1,20 @@
+<div class="container">
+    <div class="main_paragraph">
+        <h2>Register the Clients</h2>
+        <form action="/register" method="post">
+            <div class="errorMsgsRegister">
+                <div class="successReg" id="success">
+                    <h4> {{messages.success}} </h4>
+                </div>   
+                <div class="errorReg" id="error">
+                    <h4> {{messages.error}} </h4>
+                </div> 
+            </div>       
+            <div class="paragraph" style="margin-top: 2%;">
+                <p for="username" class="details">Firstname: </p>
+                <input type="text" class="name" placeholder="Enter Firstname" name="username" autocomplete="off">
+            </div>
+            <button class="register" type="submit"> Register </button>
+        </form>
+    </div>
+</div>

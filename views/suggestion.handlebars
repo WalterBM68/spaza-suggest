@@ -1,0 +1,29 @@
+<div class="container">
+    <div class="main_paragraph">
+        <h2>Write down the your suggestion product</h2>
+        <form action="/suggestion" method="post">
+            <div class="errorMsgsRegister">
+                <div class="successReg" id="success">
+                    <h4> {{messages.success}} </h4>
+                </div>   
+                <div class="errorReg" id="error">
+                    <h4> {{messages.error}} </h4>
+                </div> 
+            </div>   
+            <div class="products">
+                <label for="product_suggestion" class="suggestion">Choose the area for suggestion:</label>
+                <select name="product_suggestion" class="product_suggestion">
+                    <option value="" style="font-size: 16px;">Select the area</option>
+                    {{#each areas}}
+                    <option value="{{id}}"> {{area_name}} </option>
+                    {{/each}}
+                </select>
+            </div>    
+            <div class="paragraph" style="margin-top: 2%;">
+                <p for="Product_name" class="details">Product name: </p>
+                <input type="text" class="name" placeholder="Enter Product name" name="product_name" autocomplete="off">
+            </div>
+            <button class="submitBtn" type="submit"> Submit </button>
+        </form>
+    </div>
+</div>
