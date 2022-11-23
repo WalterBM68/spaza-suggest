@@ -127,7 +127,7 @@ module.exports = Routes = (spazaSuggestionDB) =>{
         
         const spazaSugestions = await spazaSuggestionDB.suggestionsForArea();
         res.render('suggestionsForArea', {
-            // spazaSugestions
+            spazaSugestions
         });
     }
     //area suggestion page(POST route)
