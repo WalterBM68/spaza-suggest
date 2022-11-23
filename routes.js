@@ -54,10 +54,13 @@ module.exports = Routes = (spazaSuggestionDB) =>{
             res.redirect('/login_client');
             return;
         }
+        const clientID = req.session.loginUniqueCode.id;
+        const suggestions = await spazaSuggestionDB.suggestions(clientID);
         const areas = await spazaSuggestionDB.areas();
         res.render('suggestion', {
             loginUniqueCode: req.session.loginUniqueCode,
-            areas
+            areas,
+            suggestions
         });
     }
     //product screen(POST)
@@ -72,7 +75,7 @@ module.exports = Routes = (spazaSuggestionDB) =>{
             await spazaSuggestionDB.suggestProduct(product_suggestion, clientID, product_name);
             req.flash('success', "Thank you for your suggestion");  
         }
-        await spazaSuggestionDB.suggestions(clientID);
+        
         res.redirect('suggestion');
     }
     //Register shop owner(Get)
@@ -124,10 +127,9 @@ module.exports = Routes = (spazaSuggestionDB) =>{
     }
     //area suggestion page (Get route)
     const getAreaSuggestionsScreen = async (req, res) => {
-        
-        const spazaSugestions = await spazaSuggestionDB.suggestionsForArea();
+        // const spazaSugestions = await spazaSuggestionDB.suggestionsForArea();
         res.render('suggestionsForArea', {
-            spazaSugestions
+            // spazaSugestions
         });
     }
     //area suggestion page(POST route)

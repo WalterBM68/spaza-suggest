@@ -2,7 +2,16 @@
 <div class="container">
     <div class="main_paragraph">
         <form action="/suggestionsForArea" method="post">
-        the suggestion of this area are as follows
+        <table>
+                <tr>
+                    <th>The suggestions for this erea</th>
+                </tr>
+                {{#each spazaSugestions}}
+                <tr>
+                    <td>{{product_name}} </td>
+                </tr>
+                {{/each}}
+            </table>
         </form>
     </div>
 </div>
