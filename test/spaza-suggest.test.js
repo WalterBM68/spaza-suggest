@@ -184,5 +184,3 @@ describe ("The smart spaza", function() {
     });
    
 });
-
-// [![Node.js CI](https://github.com/WalterBM68/spaza-suggest/actions/workflows/node.js.yml/badge.svg)](https://github.com/WalterBM68/spaza-suggest/actions/workflows/node.js.yml)
